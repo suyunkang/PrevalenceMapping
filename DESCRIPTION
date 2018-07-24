@@ -1,0 +1,19 @@
+Package: PrevalenceMapping
+Title: Prevalence Mapping
+Version: 1.0
+Authors@R: c(person("Su Yun", "Kang", role=c("aut", "cre"), email="su.kang@bdi.ox.ac.uk"))
+Author: Su Yun Kang [aut, cre]
+Maintainer: Su Yun Kang <su.kang@bdi.ox.ac.uk>
+Description: The package performs Bayesian geostatistical spatial mapping of disease prevalence using prevalence survey data and environmental covariate raster files. Using an integrated nested Laplace approximation (INLA) framework, the outputs include mapped prevalence in the form of raster files, and measures of in-sample-fit and cross-validation.
+Depends: R (>= 3.3.0)
+License: CC0
+LazyData: true
+Imports: raster,
+    parallel,
+    data.table,
+    stats,
+    utils,
+    graphics
+Suggests: INLA
+RoxygenNote: 6.0.1
+Byte-Compile: yes
