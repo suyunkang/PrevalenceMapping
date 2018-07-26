@@ -500,7 +500,7 @@ fitFinalModel = function(response, val_DAT, finalmodel, A_mat, spde, family = "b
 crossValidation <- function(response, finalmodel, A_mat, spde, family = "binomial", raster_stack, int.strategy, n_reps = 100, pct_out){
   i = 1:n_reps
 
-  cor_mat <- mclapply(X = i, FUN = function(...) {
+  cor_mat <- parallel::mclapply(X = i, FUN = function(...) {
     requireNamespace("INLA")
     requireNamespace("raster")
     aa = sample(1:nrow(response), size = floor(nrow(response)*pct_out), replace = FALSE)
