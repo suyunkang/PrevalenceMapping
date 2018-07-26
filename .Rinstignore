@@ -1,0 +1,6 @@
+# Some example scripts are included (but not run) as part of the package
+doc/.*[.]R$
+doc/.*[.]csv$
+doc/.*[.]pdf$
+doc/.*[.]tif$
+doc/.*[.]txt$
