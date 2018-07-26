@@ -1,0 +1,8 @@
+# list of files to ignore on package build
+^.*\\.Rproj$
+^\\.Rproj\\.user$
+PrevalenceMapping.pdf
+inst/doc/.*[.]tif$
+inst/doc/.*[.]csv$
+inst/doc/.*[.]R$
+inst/doc/.*[.]pdf$
