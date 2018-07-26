@@ -500,24 +500,15 @@ fitFinalModel = function(response, val_DAT, finalmodel, A_mat, spde, family = "b
 crossValidation <- function(response, finalmodel, A_mat, spde, family = "binomial", raster_stack, int.strategy, n_reps = 100, pct_out){
   i = 1:n_reps
 
-  if(Sys.info()["sysname"] == "Windows") {
-    p_type <- "PSOCK"
-  } else {
-    p_type <- "FORK"
-  }
-  cluster <- parallel::makeCluster(parallel::detectCores(), type = p_type)
-  parallel::clusterExport(cluster, "fitFinalModel")
-  parallel::clusterExport(cluster, c("response", "finalmodel", "A_mat", "spde", "family", "raster_stack", "int.strategy"), envir = environment())
-  cor_mat <- parallel::parLapply(cluster, X = i, fun = function(x) {
+  cor_mat <- mclapply(X = i, FUN = function(...) {
     requireNamespace("INLA")
     requireNamespace("raster")
     aa = sample(1:nrow(response), size = floor(nrow(response)*pct_out), replace = FALSE)
     DAT = response
     DAT$n_positive[aa] = NA
     fitFinalModel(response = response, val_DAT = DAT, finalmodel = finalmodel, A_mat = A_mat, spde = spde, family = family, raster_stack = raster_stack, int.strategy = int.strategy)
-  })
-  parallel::stopCluster(cluster)
-
+  }, mc.cores = parallel::detectCores())
+  
   cor_mat <- t(as.data.frame(cor_mat))
   colnames(cor_mat) = c("Correlation mean", "Cross-validated R-squared")
   rownames(cor_mat) <- NULL
