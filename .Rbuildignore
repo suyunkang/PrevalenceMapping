@@ -1,8 +1,8 @@
 # list of files to ignore on package build
-^.*\\.Rproj$
-^\\.Rproj\\.user$
-PrevalenceMapping.pdf
-inst/doc/.*[.]tif$
-inst/doc/.*[.]csv$
-inst/doc/.*[.]R$
-inst/doc/.*[.]pdf$
+^.*\.Rproj$         # Automatically added by RStudio,
+^\.Rproj\.user$     # used for temporary files. 
+^PrevalenceMapping.pdf
+^inst/doc/.*[.]tif$
+^inst/doc/.*[.]csv$
+^inst/doc/.*[.]R$
+^inst/doc/.*[.]pdf$
