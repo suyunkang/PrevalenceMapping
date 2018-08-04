@@ -2,7 +2,4 @@
 ^.*\.Rproj$         # Automatically added by RStudio,
 ^\.Rproj\.user$     # used for temporary files. 
 ^PrevalenceMapping.pdf
-^inst/doc/.*[.]tif$
-^inst/doc/.*[.]csv$
-^inst/doc/.*[.]R$
-^inst/doc/.*[.]pdf$
+^inst/$
