@@ -11,7 +11,8 @@ workd = ""
 setwd(workd)
 
 ## Install "PrevalenceMapping"
-devtools::install_github(repo = "suyunkang/PrevalenceMapping")
+# devtools::install_github(repo = "suyunkang/PrevalenceMapping")
+devtools::install_github(repo = "suyunkang/PrevalenceMapping", ref = "Documentation")
 
 library(PrevalenceMapping)
 library(raster)
@@ -21,22 +22,22 @@ library(raster)
 ##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##
 
 ## Response data
-Resp = read.csv("ResponseData/MOZ_mock_data.csv")
+Resp = read.csv(file.path(.libPaths(), "PrevalenceMapping/doc/ResponseData/MOZ_mock_data.csv"))
 Resp$examined = round(Resp$tested, 0)
 Resp$n_positive = round(Resp$positive, 0)
 Resp$longitude = Resp$longitude
 Resp$latitude = Resp$latitude
 
 ## Stack covariates (a mix of static and dynamic covariates)
-folder = paste0(workd, "/Covariates/")
+folder = file.path(.libPaths(), "PrevalenceMapping/doc/Covariates")
 lsf = list.files(folder)
-lsf = list.files(folder)[grep("*.tif$", (lsf))]
-covariate_stack = stack(paste0(folder, lsf))
+lsf = list.files(folder, full.names = TRUE)[grep("*.tif$", (lsf))]
+covariate_stack = stack(lsf)
 NAvalue(covariate_stack) = -9999
 
 
 ## Store results here
-setwd(paste0(workd,"/Outputs"))
+setwd(paste0(workd,"/Outputs2"))
 
 
 ##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##
@@ -70,7 +71,7 @@ for (k in 1:length(test_pct)){
 validation_result
 
 
-## Plot validation results ##
+## Plot validation results
 pdf("Cross_validation_result.pdf")
 
 par(mfrow=c(2,1), mar=c(3.5,4,3,1), mgp=c(2,1,0))
