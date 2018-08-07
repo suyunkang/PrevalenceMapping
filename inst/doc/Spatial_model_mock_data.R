@@ -37,7 +37,7 @@ NAvalue(covariate_stack) = -9999
 
 
 ## Store results here
-setwd(paste0(workd,"/Outputs2"))
+setwd(paste0(workd,"/Outputs"))
 
 
 ##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##~~##
