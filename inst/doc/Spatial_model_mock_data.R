@@ -30,8 +30,7 @@ Resp$latitude = Resp$latitude
 
 ## Stack covariates (a mix of static and dynamic covariates)
 folder = file.path(.libPaths(), "PrevalenceMapping/doc/Covariates")
-lsf = list.files(folder)
-lsf = list.files(folder, full.names = TRUE)[grep("*.tif$", (lsf))]
+lsf = grep("*.tif$", list.files(folder, full.names = TRUE), value = T)
 covariate_stack = stack(lsf)
 NAvalue(covariate_stack) = -9999
 
