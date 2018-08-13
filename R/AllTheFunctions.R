@@ -507,7 +507,7 @@ crossValidation <- function(response, finalmodel, A_mat, spde, family = "binomia
     DAT = response
     DAT$n_positive[aa] = NA
     fitFinalModel(response = response, val_DAT = DAT, finalmodel = finalmodel, A_mat = A_mat, spde = spde, family = family, raster_stack = raster_stack, int.strategy = int.strategy)
-  }, mc.cores = parallel::detectCores())
+  }, mc.cores = ifelse(tolower(Sys.info()[["sysname"]] == "windows"), 1, parallel::detectCores()))
   
   cor_mat <- t(as.data.frame(cor_mat))
   colnames(cor_mat) = c("Correlation mean", "Cross-validated R-squared")
