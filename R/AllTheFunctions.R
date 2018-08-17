@@ -392,6 +392,16 @@ predictionOnAGrid <- function(response, finalmodel, A_mat, spde, mesh, family = 
   out_IQR = raster::setValues(test, pred_val)
   out_IQR = raster::writeRaster(out_IQR, "Prevalence_IQR.tif", overwrite = TRUE)
   plot(out_IQR, main = "Prevalence interquartile range")
+  
+  pred_val[!w] <- round(pred_quants[4,], 3)
+  out_975 = raster::setValues(test, pred_val)
+  out_975 = raster::writeRaster(out_975, "Prevalence_upperbound_975.tif", overwrite = TRUE)
+  plot(out_975, main = "Prevalence (upper bound)")
+  
+  pred_val[!w] <- round(pred_quants[1,], 3)
+  out_025 = raster::setValues(test, pred_val)
+  out_025 = raster::writeRaster(out_025, "Prevalence_lowerbound_025.tif", overwrite = TRUE)
+  plot(out_025, main = "Prevalence (lower bound)")
 
   dev.off()
 
