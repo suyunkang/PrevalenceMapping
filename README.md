@@ -34,6 +34,7 @@ dir.create("Outputs", showWarnings = FALSE)
 setwd("Outputs")
 library(PrevalenceMapping)
 library(raster)
+library(INLA)
 ```
 
 Load the response data and do any pre-procsessing.
